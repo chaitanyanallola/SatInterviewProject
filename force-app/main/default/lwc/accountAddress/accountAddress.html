@@ -1,0 +1,173 @@
+<template>
+    <div class="slds-grid" style="font-size:12px;">
+        <div class="slds-col" if:false={isEdit}>
+            <template if:true={billingAddress}>
+                <div style="margin-bottom: 7px;">
+                    <p class="slds-text-heading_small" style="font-size:12px;">Billing Address</p>
+                </div>
+                <template for:each={billingAddress} for:item="acc" for:index="index">
+                    <div key={acc.addressRefId}>
+                        <div class="slds-grid addressgrid">
+                            <div class="slds-col">
+                                <lightning-formatted-address street={acc.location.Street} city={acc.location.City}
+                                    country={acc.location.Country} province={acc.location.State}
+                                    postal-code={acc.location.PostalCode}>
+                                </lightning-formatted-address>
+                            </div>
+                            <div class="slds-col">
+                                <lightning-button-icon icon-name="utility:edit" variant="bare" alternative-text="Edit"
+                                    onclick={editAddress}
+                                    class="slds-button slds-button_icon-bare inline-edit-trigger-icon slds-button__icon slds-button__icon_hint">
+                                </lightning-button-icon>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </template>
+            </template>
+        </div>
+        <div class="slds-col" if:true={isEdit}>
+            <template if:true={billingAddress}>
+
+                <div style="margin-bottom: 7px;">
+                    <p class="slds-text-heading_small" style="font-size:12px;">Billing Address</p>
+                </div>
+                <template for:each={billingAddress} for:item="acc" for:index="index">
+                    <div key={acc.addressRefId}>
+
+                        <div class="slds-form-element">
+
+                            <div>
+                                <lightning-textarea value={acc.location.Street} data-index={index}
+                                    label="Billing Street" data-id={acc.addressRefId} data-field="HazardNodeName"
+                                    key={acc.addressRefId}></lightning-textarea>
+
+                            </div>
+
+                            <div class="slds-grid addressgrid">
+                                <div class="slds-col">
+                                    <div>
+
+                                        <lightning-input value={acc.location.City} label="Billing City">
+                                        </lightning-input>
+                                    </div>
+                                    <div>
+                                        <lightning-combobox options={countryList} value={acc.location.Country}
+                                            label="Billing Country" onchange={handleCountryChange}></lightning-combobox>
+                                    </div>
+
+                                </div>
+                                <div class="slds-col" style="margin-left:4px">
+                                    <div>
+                                        <lightning-combobox options={stateData} value={acc.location.State}
+                                            label="Billing State"></lightning-combobox>
+
+                                    </div>
+                                    <div>
+
+                                        <lightning-input value={acc.location.PostalCode} label="Billing PostalCode">
+                                        </lightning-input>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+
+                </template>
+            </template>
+        </div>
+        <div class="slds-col" if:false={isEdit} style="margin-left:7px;">
+            <template if:true={shippingAddress}>
+                <div style="margin-bottom: 7px;">
+                    <p class="slds-text-heading_small" style="font-size:12px;">Shipping Address</p>
+                </div>
+                <template for:each={shippingAddress} for:item="acc" for:index="index">
+                    <div key={acc.addressRefId}>
+                        <div class="slds-grid addressgrid">
+                            <div class="slds-col">
+                                <lightning-formatted-address street={acc.location.Street} city={acc.location.City}
+                                    country={acc.location.Country} province={acc.location.State}
+                                    postal-code={acc.location.PostalCode}>
+                                </lightning-formatted-address>
+                            </div>
+                            <div class="slds-col">
+                                <lightning-button-icon icon-name="utility:edit" variant="bare" alternative-text="Edit"
+                                    class="slds-button slds-button_icon-bare inline-edit-trigger-icon slds-button__icon slds-button__icon_hint"
+                                    onclick={editAddress}>
+                                </lightning-button-icon>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </template>
+            </template>
+        </div>
+
+        <div class="slds-col" if:true={isEdit} style="margin-left:7px;">
+            <template if:true={shippingAddress}>
+                <div style="margin-bottom: 7px;">
+                    <p class="slds-text-heading_small" style="font-size:12px;">Shipping Address</p>
+                </div>
+                <template for:each={shippingAddress} for:item="acc" for:index="index">
+                    <div key={acc.addressRefId}>
+                        <div class="slds-form-element">
+
+                            <div>
+                                <lightning-textarea value={acc.location.Street} label="Shipping Street">
+                                </lightning-textarea>
+                            </div>
+
+                            <div class="slds-grid addressgrid">
+                                <div class="slds-col">
+                                    <div>
+
+                                        <lightning-input value={acc.location.City} label="Shipping City">
+                                        </lightning-input>
+                                    </div>
+                                    <div>
+                                        <lightning-combobox options={stateData} value={acc.location.State}
+                                            label="Shipping State"></lightning-combobox>
+                                    </div>
+
+                                </div>
+                                <div class="slds-col" style="margin-left:4px">
+                                    <div>
+                                        <lightning-combobox options={countryList} value={acc.location.Country}
+                                            label="Shipping Country"></lightning-combobox>
+
+                                    </div>
+                                    <div>
+                                        <lightning-input value={acc.location.PostalCode} label="Shipping PostalCode">
+                                        </lightning-input>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </template>
+            </template>
+        </div>
+    </div>
+    <div>
+        <br>
+
+        <div class="custombtngrid" if:true={isEdit}>
+            <lightning-button label="Cancel" title="Non-primary action" onclick={navigateToAccountAddressHome}
+                class="slds-m-left_x-small"></lightning-button>
+            <lightning-button variant="brand" label="Save" title="Primary action" onclick={handleSave}
+                class="slds-m-left_x-small"></lightning-button>
+        </div>
+    </div>
+    <template if:true={addressDetails}>
+        <div>
+            <lightning-map map-markers={addressDetails} markers-title={addressDetails}>
+            </lightning-map>
+        </div>
+    </template>
+</template>

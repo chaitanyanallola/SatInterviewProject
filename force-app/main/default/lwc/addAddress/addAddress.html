@@ -1,0 +1,50 @@
+<template>
+
+
+    <lightning-record-edit-form record-id={recordId} object-api-name="AccountAddress__c" onsuccess={handleSuccess}>
+
+        <div class="slds-box" style="padding:0px;">
+            <lightning-card title="Address" icon-name="action:edit_relationship">
+                <div style="float:right;margin-top:-47px;margin-right: 32px;">
+
+                    <lightning-button variant="neutral" label="Cancel" title="Cancel" type="text"
+                        onclick={navigateToAccountAddressHome} class="slds-m-right_small">
+                    </lightning-button>
+
+                    <lightning-button variant="brand" name="save" type="submit" label="Save">
+                    </lightning-button>
+                </div>
+            </lightning-card>
+        </div>
+        <div class="slds-grid slds-wrap" style="background-color:white">
+            <lightning-input-field field-name="Account__c" class="street" label="Account" required>
+            </lightning-input-field>
+            <div class="slds-col slds-size_1-of-2">
+                <lightning-input-field field-name="AddressType__c" label="Address Type" class="Type" required>
+                </lightning-input-field>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+                <lightning-input-field field-name="Street__c" label="Street" class="street" required>
+                </lightning-input-field>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+                <lightning-input-field field-name="Postalcode__c" label="Postal code" class="postal" required>
+                </lightning-input-field>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+                <lightning-input-field field-name="City__c" class="city" label="City" required>
+                </lightning-input-field>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+                <lightning-input-field field-name="State__c" label="State">
+                </lightning-input-field>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+                <lightning-input-field field-name="Country__c" label="Country" required >
+                </lightning-input-field>
+            </div>
+
+        </div>
+
+    </lightning-record-edit-form>
+</template>

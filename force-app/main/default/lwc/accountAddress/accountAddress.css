@@ -1,0 +1,7 @@
+.addressgrid{
+    font-size:12px;border-bottom: 1px solid rgba(215, 218, 233, 1);border-collapse: collapse;
+}
+
+.custombtngrid{
+    background:var(--lwc-colorBackground,rgb(243, 242, 242));display: flex; justify-content: center;
+}

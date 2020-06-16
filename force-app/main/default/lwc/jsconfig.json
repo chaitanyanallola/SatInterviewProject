@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "baseUrl": ".",
+        "paths": {
+            "c/accountAddress": [
+                "accountAddress/accountAddress.js"
+            ],
+            "c/addAddress": [
+                "addAddress/addAddress.js"
+            ],
+            "c/weather": [
+                "weather/weather.js"
+            ]
+        }
+    },
+    "include": [
+        "**/*",
+        "../../../../.sfdx/typings/lwc/**/*.d.ts"
+    ],
+    "typeAcquisition": {
+        "include": [
+            "jest"
+        ]
+    }
+}
