@@ -3,9 +3,7 @@ public class WeatherController {
     
      @AuraEnabled (cacheable=true)
     public static WrapperService.WeatherData performCallout(String location) {
-        
-        String apiKey = '1ad1f08f6c82444defc7f1dd4fd3a5a8';
-
+        String apiKey = System.label.weatherAPIkey;
 		String requestEndpoint = 'http://api.openweathermap.org/data/2.5/weather';
 		requestEndpoint += '?q=' + location;
 		requestEndpoint += '&units=metric';
@@ -24,29 +22,21 @@ public class WeatherController {
                     weather.cityTemp = Decimal.valueOf(parser.getText());
                 } else if (parser.getCurrentName() == 'name') {
                     weather.cityName = parser.getText();
-                } 
-                else if (parser.getCurrentName() == 'country') {
+                } else if (parser.getCurrentName() == 'country') {
                     weather.state = parser.getText();
-                } 
-                else if (parser.getCurrentName() == 'timezone') {
+                } else if (parser.getCurrentName() == 'timezone') {
                     weather.cityTimeZone = parser.getText();
-                } 
-                else if (parser.getCurrentName() == 'speed') {
+                } else if (parser.getCurrentName() == 'speed') {
                    weather.cityWindSpeed = Decimal.valueOf(parser.getText());
-                } 
-                else if (parser.getCurrentName() == 'lat') {
+                } else if (parser.getCurrentName() == 'lat') {
                     weather.cityLat = parser.getText();
                 } else if (parser.getCurrentName() == 'lon') {
                     weather.cityLong = parser.getText();
-                } 
-                else if (parser.getCurrentName() == 'humidity') {
+                }  else if (parser.getCurrentName() == 'humidity') {
                    weather.cityPrecip = Decimal.valueOf(parser.getText());
-                }
-                 else if (parser.getCurrentName() == 'description') {
+                }else if (parser.getCurrentName() == 'description') {
                      weather.cityDescription = parser.getText();
-                }
-              
-                
+                } 
             }
         }
       
