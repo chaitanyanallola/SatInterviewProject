@@ -24,10 +24,6 @@ export default class AccountAddress extends NavigationMixin(LightningElement) {
     @track stateData=[];
     @track myList=[];
 
-    //@track billingAddress =[{"accountRefId":"","addressId":"","description":"MeggendorferstR","icon":"action:map","location":{"City":"","Country":"","PostalCode":"","State":"","Street":"","Type":"Billing Address"},"title":"Billing Address"}];
-    @track billingTmpAddress=
-    [{"accountRefId":"0012X000020RvG4QAK","addressId":"a012X00003gz78YQAQ","description":"Moosach,Munich,DE","icon":"action:map","location":{"City":"Munich","Country":"DE","PostalCode":"80992","State":"BY","Street":"Moosach","Type":"Billing Address"},"title":"Billing Address"}];
-
     @wire(getObjectInfo, { objectApiName: AccountAddress_OBJECT})
     objectInfo;
 
